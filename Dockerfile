@@ -11,6 +11,12 @@ curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
   && apt install ngrok
 EOF
 
+
+# Deployment options
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
+    RUBY_YJIT_ENABLE="1"
+
 ENTRYPOINT [ "./entrypoint" ]
 
 CMD ["ruby", "app.rb"]
