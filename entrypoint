@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+
+(ngrok http --log=stdout --url=$NGROK_URL 4567) &
+
+exec "${@}"

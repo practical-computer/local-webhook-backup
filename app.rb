@@ -39,6 +39,10 @@ end
 require 'sinatra/base'
 
 class MyApp < Sinatra::Base
+  configure :production, :development do
+    enable :logging
+  end
+
   def verified_request?(request:)
     data = request.body.read
     request.body.rewind
